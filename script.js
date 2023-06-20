@@ -4,16 +4,16 @@ let pontos = 0;
 let tempo = 0;
 let timer = null;
 
-let nome = prompt ("Qual seu nome ?");
-document.write("Oie " + nome);
+let nome_da_pessoa = prompt ("Qual seu nome ?");
+document.write("Oie " + nome_da_pessoa);
 
-function criarElemento(pokemon, links){
+function criarElemento(pokemon, link){
   const container = document.getElementById("container"); 
   const name= document.createElement("p");
   const url= document.createElement("span");
 
   name.textContent = pokemon;
-  url.textContent= links;
+  url.textContent= link;
 
   container.appendChild(name);
   container.appendChild(url);
@@ -48,7 +48,7 @@ fetch('http://localhost:5050/score')
 .then(data => {
   const jogadores = data ;
   console.log(data);
-  jogadores.forEach((jogador) => {
+  jogadores.forEach(jogador => {
     criarElemento(jogador.name, jogador.pontos);
   });
 })
@@ -75,8 +75,9 @@ function contaTempo(){
  }
  if(tempo <= 0){
  clearInterval(timer);
+ 
  let pontuacao = {
-  name: nome,
+  name: nome_da_pessoa,
   pontos: pontos
 }
 
